@@ -2,7 +2,7 @@
 
 ## Team
 - **Team ID:** 10
-- **Members:** Varun Togaru, Ronit Malholtra, Visvajit Murali
+- **Members:** Varun Togaru, Ronit Malhotra, Visvajit Murali
 
 ## Overview
 MarketMinds builds an end-to-end ML pipeline that takes daily news headlines, aligns them with DJIA market data, and predicts **next-day direction** (up vs. down). It compares:
