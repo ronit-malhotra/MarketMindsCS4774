@@ -1,13 +1,39 @@
-# MarketMinds
+# MarketMinds – Headlines to Returns
 
-Predict next-day stock direction (up/down) using financial news headlines + market context.
+## Team
+- **Team ID:** 10
+- **Members:** Varun Togaru, Ronit Malholtra, Visvajit Murali
 
-## Pipeline
-1) Ingest headline dataset (Kaggle)
-2) Fetch OHLCV from Yahoo Finance
-3) Align headlines to trading days
-4) Clean + dedupe text
-5) Label next-day return (up/down)
-6) Baselines: market-only, TF-IDF text-only
-7) FinBERT embeddings (frozen) + fused model
-8) Rolling time-series evaluation + interpretability (SHAP)
+## Overview
+MarketMinds builds an end-to-end ML pipeline that takes daily news headlines, aligns them with DJIA market data, and predicts **next-day direction** (up vs. down). It compares:
+- **Market-only** features (momentum/volatility baselines)
+- **TF-IDF** text features
+- **FinBERT** embeddings (finance transformer features)
+across multiple models (Logistic Regression, SVM, XGBoost), using **rolling time splits** to avoid look-ahead bias. It also produces a SHAP-based interpretability output and a simple ablation study.
+
+## Usage (Core Results)
+1. Open `FinalRunnable.ipynb` in Google Colab.
+2. Enable GPU: **Runtime → Change runtime type → T4 GPU**
+3. Run everything: **Runtime → Run all**
+4. When finished, download:
+   - `reports/`
+   - `data/features/`
+
+### Dataset location
+The notebook expects the headlines CSV at:
+- `data/raw/DailyNews/Combined_News_DJIA.csv`
+
+## Outputs
+Running the notebook generates these key artifacts:
+- `data/raw/headlines_long.parquet` (reshaped headlines)
+- `data/raw/djia_prices.parquet` (downloaded DJIA prices)
+- `data/processed/model_table.parquet` (aligned + labeled data)
+- `data/processed/model_table_clean.parquet` (cleaned text)
+- `data/features/finbert_day_embeddings.parquet` (FinBERT embeddings)
+- `reports/all_model_results.csv` (all folds, all models)
+- `reports/model_comparison_summary.csv` (aggregated comparison table)
+- `reports/shap_feature_importance.csv` (interpretability output)
+- `reports/ablation_study.csv` (feature-set comparison)
+
+## Video Link
+https://youtu.be/iN-jLGnTcNQ
